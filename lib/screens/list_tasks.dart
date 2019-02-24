@@ -1,5 +1,6 @@
 import 'package:schedules/util/build_list.dart';
 import 'package:flutter/material.dart';
+import 'package:schedules/util/loading.dart';
 import '../services/requests.dart';
 import 'package:schedules/screens/schedule.dart';
 
@@ -26,17 +27,7 @@ class _ListTasksState extends State<ListTasks> {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
             case ConnectionState.none:
-              return Center(
-                child: Container(
-                  width: 200.0,
-                  height: 200.0,
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                    strokeWidth: 5.0,
-                  ),
-                ),
-              );
+              return Loading();
             default:
               if (snapshot.hasError) {
                 return Container();

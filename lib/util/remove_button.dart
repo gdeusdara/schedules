@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
   Widget removeButton(BuildContext context, Map task) {
     if (task != null) {
       return RoundedButton(
-        color: Colors.orange,
+        color: Colors.deepOrange,
         text: "Delete",
         onPress: () {
           showDialog(

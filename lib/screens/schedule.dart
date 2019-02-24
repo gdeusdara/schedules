@@ -120,7 +120,7 @@ class _ScheduleState extends State<Schedule> {
                       children: <Widget>[
                         removeButton(context, widget.task),
                         RoundedButton(
-                          color: Colors.yellow,
+                          color: Colors.green,
                           text: widget.task == null
                               ? "Save Schedule"
                               : "Edit Schedule",

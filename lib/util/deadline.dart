@@ -61,7 +61,7 @@ class _DeadlineState extends State<Deadline> {
           child: RaisedButton(
             onPressed: _selectDate,
             child: Icon(Icons.date_range),
-            color: Colors.blueAccent,
+            color: Colors.teal,
           ),
         )
       ],

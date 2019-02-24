@@ -3,15 +3,26 @@ import 'package:flutter/material.dart';
 import '../services/requests.dart';
 
 buildList(BuildContext context, AsyncSnapshot snapshot) {
+  var list = snapshot.data;
+
+  list.sort((a, b) {
+    if (a["Completed"] && !b["Completed"]) {
+      return 1;
+    } else if (!a["Completed"] && b["Completed"]) {
+      return -1;
+    } else
+      return 0;
+  });
+
   return RefreshIndicator(
     child: ListView.builder(
       padding: EdgeInsets.only(top: 10.0),
-      itemCount: snapshot.data.length,
+      itemCount: list.length,
       itemBuilder: (BuildContext context, int index) {
         var date;
         String deadline;
-        if (snapshot.data[index]['Deadline'] != null) {
-          date = DateTime.parse(snapshot.data[index]['Deadline']);
+        if (list[index]['Deadline'] != null) {
+          date = DateTime.parse(list[index]['Deadline']);
           deadline = "${date.month}/${date.day}/${date.year}";
         }
         return GestureDetector(
@@ -20,7 +31,7 @@ buildList(BuildContext context, AsyncSnapshot snapshot) {
               context,
               MaterialPageRoute(
                 builder: (context) => Schedule(
-                      task: snapshot.data[index],
+                      task: list[index],
                     ),
               ),
             );
@@ -36,15 +47,15 @@ buildList(BuildContext context, AsyncSnapshot snapshot) {
               alignment: Alignment.center,
               child: ListTile(
                 title: Text(
-                  snapshot.data[index]["Title"],
+                  list[index]["Title"],
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  snapshot.data[index]['Description'] == '' ||
-                          snapshot.data[index]['Description'] == null
+                  list[index]['Description'] == '' ||
+                          list[index]['Description'] == null
                       ? 'No Description'
-                      : snapshot.data[index]['Description'],
+                      : list[index]['Description'],
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -53,10 +64,10 @@ buildList(BuildContext context, AsyncSnapshot snapshot) {
                   style: TextStyle(color: Colors.grey),
                 ),
                 leading: Icon(
-                  snapshot.data[index]["Completed"]
+                  list[index]["Completed"]
                       ? Icons.check_circle
                       : Icons.error_outline,
-                  color: snapshot.data[index]["Completed"]
+                  color: list[index]["Completed"]
                       ? Colors.green
                       : Colors.redAccent,
                   size: 27.0,
