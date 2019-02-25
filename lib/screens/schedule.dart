@@ -26,6 +26,7 @@ class _ScheduleState extends State<Schedule> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
 
+  // Constructor function
   void initState() {
     super.initState();
 
@@ -73,7 +74,7 @@ class _ScheduleState extends State<Schedule> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Schedule'),
+        title: Text(widget.task == null ? 'New Schedule' : 'Edit Schedule'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
