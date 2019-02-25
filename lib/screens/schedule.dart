@@ -86,7 +86,7 @@ class _ScheduleState extends State<Schedule> {
               child: Column(
                 children: <Widget>[
                   TextFormField(
-                    decoration: decoration('Title', 'Schedule\' title'),
+                    decoration: decoration('Title', 'Schedule\'s title'),
                     maxLength: 100,
                     controller: _titleController,
                     validator: _titleValidator,

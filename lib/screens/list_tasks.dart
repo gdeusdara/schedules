@@ -14,7 +14,7 @@ class _ListTasksState extends State<ListTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tarefas'),
+        title: Text('Schedules'),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
