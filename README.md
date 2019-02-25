@@ -1,16 +1,27 @@
-# schedules
+# Schedules
+A Schedule app developed in Flutter
+<br>
+this app was created for the Scytl selective process
+<br>
 
-A new Flutter project.
+## The APK file to see this is in the folder APK.
 
-## Getting Started
+# Screenshots
+<img src="images/List.jpeg" height="520px"> <img src="images/NewSchedule.jpeg" height="520px"> <img src="images/EditSchedule.jpeg" height="520px"> 
+<img src="images/datePicker.jpeg" height="520px">
 
-This project is a starting point for a Flutter application.
+# Run App
+If you want to run this app with Flutter, please, install [Flutter](https://flutter.dev/docs/get-started/install).
 
-A few resources to get you started if this is your first Flutter project:
+install the dependencies
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+        flutter packages get
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Connect the device and run
+
+        flutter run
+
+## Flutter
+
+For more information about Flutter, view the online
+[documentation](https://flutter.io/).

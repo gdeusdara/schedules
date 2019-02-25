@@ -3,13 +3,26 @@ import 'package:flutter/material.dart';
 import '../services/requests.dart';
 
 buildList(BuildContext context, AsyncSnapshot snapshot) {
-  var list = snapshot.data;
+  List list = snapshot.data;
 
   list.sort((a, b) {
+    // leaving the incomplete tasks below
     if (a["Completed"] && !b["Completed"]) {
       return 1;
     } else if (!a["Completed"] && b["Completed"]) {
       return -1;
+
+      // Sorting by Deadline
+      // In dart, null != false
+    } else if (a["Deadline"] != null && b["Deadline"] == null) {
+      return -1;
+    } else if (a["Deadline"] == null && b["Deadline"] != null) {
+      return 1;
+    } else if (a["Deadline"] != null && b["Deadline"] != null) {
+      DateTime c = DateTime.parse(a["Deadline"]);
+      DateTime d = DateTime.parse(b["Deadline"]);
+
+      return c.compareTo(d);
     } else
       return 0;
   });
@@ -19,12 +32,15 @@ buildList(BuildContext context, AsyncSnapshot snapshot) {
       padding: EdgeInsets.only(top: 10.0),
       itemCount: list.length,
       itemBuilder: (BuildContext context, int index) {
-        var date;
+        // fixing date to MM/DD/YYYY
+        DateTime date;
         String deadline;
         if (list[index]['Deadline'] != null) {
           date = DateTime.parse(list[index]['Deadline']);
           deadline = "${date.month}/${date.day}/${date.year}";
         }
+
+        // The list
         return GestureDetector(
           onTap: () {
             Navigator.push(
