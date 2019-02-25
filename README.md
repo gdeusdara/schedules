@@ -11,7 +11,7 @@ this app was created for the Scytl selective process
 <img src="images/datePicker.jpeg" height="520px">
 
 # Run App
-If you want to run this app with Flutter, please, install [Flutter](https://flutter.dev/docs/get-started/install).
+If you want to run this app with Flutter, please [install Flutter](https://flutter.dev/docs/get-started/install).
 
 install the dependencies
 

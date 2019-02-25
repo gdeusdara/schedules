@@ -37,7 +37,13 @@ buildList(BuildContext context, AsyncSnapshot snapshot) {
         String deadline;
         if (list[index]['Deadline'] != null) {
           date = DateTime.parse(list[index]['Deadline']);
-          deadline = "${date.month}/${date.day}/${date.year}";
+          if (date.day == DateTime.now().day &&
+              date.month == DateTime.now().month &&
+              date.year == DateTime.now().year) {
+            deadline = "Today!";
+          } else {
+            deadline = "${date.month}/${date.day}/${date.year}";
+          }
         }
 
         // The list
@@ -85,7 +91,9 @@ buildList(BuildContext context, AsyncSnapshot snapshot) {
                       : Icons.error_outline,
                   color: list[index]["Completed"]
                       ? Colors.green
-                      : Colors.redAccent,
+                      : deadline == "Today!"
+                          ? Colors.yellow
+                          : Colors.redAccent,
                   size: 27.0,
                 ),
               ),
