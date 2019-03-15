@@ -48,7 +48,7 @@ class _ListTasksState extends State<ListTasks> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: _showSchedulePage,
-      ),
+      ),floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: RefreshIndicator(
         child: ListView.builder(
           padding: EdgeInsets.only(top: 10.0),
@@ -144,7 +144,6 @@ class _ListTasksState extends State<ListTasks> {
         MaterialPageRoute(
             builder: (context) => Schedule(
                   list: _list,
-                )));
-    readData();
+                )));  
   }
 }
