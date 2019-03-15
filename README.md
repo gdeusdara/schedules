@@ -1,8 +1,5 @@
 # Schedules
-A Schedule app developed in Flutter
-<br>
-this app was created for the Scytl selective process
-<br>
+A Simple CRUD Schedule app developed in Flutter
 
 ## The APK file to see this is in the folder APK.
 
@@ -12,10 +9,6 @@ this app was created for the Scytl selective process
 
 # Run App
 If you want to run this app with Flutter, please [install Flutter](https://flutter.dev/docs/get-started/install).
-
-install the dependencies
-
-        flutter packages get
 
 Connect the device and run
 
