@@ -1,9 +1,9 @@
-import 'package:schedules/services/requests.dart';
+import 'package:schedules/services/controller.dart';
 import 'package:schedules/util/rouded_button.dart';
 import 'package:flutter/material.dart';
 
-  Widget removeButton(BuildContext context, Map task) {
-    if (task != null) {
+  Widget removeButton(BuildContext context, List list, int index) {
+    if (index != null) {
       return RoundedButton(
         color: Colors.deepOrange,
         text: "Delete",
@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
                   FlatButton(
                     child: Text("Delete"),
                     onPressed: () {
-                      removeTask(task['Id']).then((response) {
+                      removeTodo(list, index).then((response) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       });

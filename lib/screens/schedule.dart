@@ -1,16 +1,16 @@
-import 'package:schedules/util/error_message.dart';
 import 'package:schedules/util/remove_button.dart';
 import 'package:flutter/material.dart';
 import '../util/decoration.dart';
 import '../util/is_completed.dart';
-import '../services/requests.dart';
+import '../services/controller.dart';
 import 'package:schedules/util/deadline.dart';
 import 'package:schedules/util/rouded_button.dart';
 
 class Schedule extends StatefulWidget {
-  final Map<String, dynamic> task;
+  final List list;
+  final int index;
 
-  Schedule({this.task});
+  Schedule({this.list, this.index});
 
   @override
   _ScheduleState createState() => _ScheduleState();
@@ -30,18 +30,13 @@ class _ScheduleState extends State<Schedule> {
   void initState() {
     super.initState();
 
-    if (widget.task != null) {
-      _titleController.text = widget.task['Title'];
-      _descriptionController.text = widget.task['Description'];
-      var date;
-      String deadline;
-      if (widget.task['Deadline'] != null) {
-        date = DateTime.parse(widget.task['Deadline']);
-        deadline = "${date.month}/${date.day}/${date.year}";
-      }
-      _dateController.text = deadline;
+    if (widget.index != null) {
+      _task = widget.list[widget.index];
 
-      _task = widget.task;
+      _titleController.text = _task['Title'];
+      _descriptionController.text = _task['Description'];
+      _dateController.text = _task['Deadline'];
+
     } else {
       _task['DeadLine'] = false;
     }
@@ -62,19 +57,11 @@ class _ScheduleState extends State<Schedule> {
     });
   }
 
-  _afterSubmit(response) {
-    if (response.statusCode == 200) {
-      Navigator.of(context).pop();
-    } else {
-      errorMessage(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.task == null ? 'New Schedule' : 'Edit Schedule'),
+        title: Text(widget.list == null ? 'New Schedule' : 'Edit Schedule'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -119,19 +106,19 @@ class _ScheduleState extends State<Schedule> {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        removeButton(context, widget.task),
+                        removeButton(context, widget.list, widget.index),
                         RoundedButton(
                           color: Colors.green,
-                          text: widget.task == null
+                          text: widget.list == null
                               ? "Save Schedule"
                               : "Edit Schedule",
                           onPress: () {
                             if (_globalKey.currentState.validate()) {
                               _globalKey.currentState.save();
-                              if (widget.task == null) {
-                                postTask(_task).then(_afterSubmit);
+                              if (widget.index == null) {
+                                newTodo(widget.list,_task).then((data) {Navigator.of(context).pop();});
                               } else {
-                                editTask(_task).then(_afterSubmit);
+                                editTodo(widget.list, widget.index,_task).then((data) {Navigator.of(context).pop();});
                               }
                             }
                           },
