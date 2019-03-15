@@ -109,7 +109,7 @@ class _ScheduleState extends State<Schedule> {
                         removeButton(context, widget.list, widget.index),
                         RoundedButton(
                           color: Colors.green,
-                          text: widget.list == null
+                          text: widget.index == null
                               ? "Save Schedule"
                               : "Edit Schedule",
                           onPress: () {
