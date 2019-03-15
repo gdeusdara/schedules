@@ -1,8 +1,6 @@
 # Schedules
 A Simple CRUD Schedule app developed in Flutter
 
-## The APK file to see this is in the folder APK.
-
 # Screenshots
 <img src="images/List.jpeg" height="520px"> <img src="images/NewSchedule.jpeg" height="520px"> <img src="images/EditSchedule.jpeg" height="520px"> 
 <img src="images/datePicker.jpeg" height="520px">
