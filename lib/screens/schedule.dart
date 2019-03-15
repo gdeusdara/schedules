@@ -61,7 +61,7 @@ class _ScheduleState extends State<Schedule> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.list == null ? 'New Schedule' : 'Edit Schedule'),
+        title: Text(widget.index == null ? 'New Schedule' : 'Edit Schedule'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
